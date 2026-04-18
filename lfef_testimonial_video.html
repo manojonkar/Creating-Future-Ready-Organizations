@@ -1,0 +1,122 @@
+
+<h2 class="sr-only">LFEF inspiring testimonial video — auto-playing cinematic presentation of participant transformations across Leadership from the Emerging Future workshops</h2>
+
+<style>
+.sc{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:36px 56px;text-align:center;opacity:0;transition:opacity .9s ease;pointer-events:none}
+.sc.on{opacity:1;pointer-events:all}
+.ql{text-align:left;border-left:3px solid #C9A84C;padding-left:22px;border-radius:0}
+@keyframes up{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+.a0{animation:up .75s ease forwards}.a1{animation:up .75s .22s ease both}.a2{animation:up .75s .44s ease both}.a3{animation:up .75s .66s ease both}
+</style>
+
+<div style="border-radius:10px 10px 0 0;overflow:hidden;position:relative;height:480px;background:#060E1A" id="va"></div>
+
+<div style="background:#060E1A;border-radius:0 0 10px 10px;display:flex;align-items:center;gap:8px;padding:10px 14px;border-top:1px solid rgba(255,255,255,0.07)">
+  <button id="ppb" onclick="tog()" title="Play / Pause" style="width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.18);color:#fff;cursor:pointer;font-size:12px;display:flex;align-items:center;justify-content:center">⏸</button>
+  <button onclick="go(-1)" title="Previous" style="width:32px;height:32px;border-radius:50%;background:transparent;border:1px solid rgba(255,255,255,0.12);color:rgba(255,255,255,0.6);cursor:pointer;font-size:17px;display:flex;align-items:center;justify-content:center">‹</button>
+  <button onclick="go(1)" title="Next" style="width:32px;height:32px;border-radius:50%;background:transparent;border:1px solid rgba(255,255,255,0.12);color:rgba(255,255,255,0.6);cursor:pointer;font-size:17px;display:flex;align-items:center;justify-content:center">›</button>
+  <div style="flex:1;margin:0 8px;height:3px;background:rgba(255,255,255,0.12);border-radius:3px;overflow:hidden">
+    <div id="bar" style="height:100%;background:#C9A84C;width:0%;transition:width .12s linear"></div>
+  </div>
+  <span id="ct" style="font-size:11px;color:rgba(255,255,255,0.3);font-family:system-ui;min-width:36px">1/26</span>
+</div>
+
+<p style="font-size:12px;color:var(--color-text-secondary);text-align:center;margin-top:10px;font-family:system-ui">Press <strong>space</strong> to pause · arrow keys to navigate · <strong>click</strong> anywhere on the video</p>
+
+<script>
+const G='#C9A84C', W='#ffffff', M='rgba(255,255,255,0.45)', D='rgba(255,255,255,0.22)';
+const QS='font-family:Georgia,serif;font-style:italic;color:'+W+';line-height:1.55';
+const HS='font-family:Georgia,serif;color:'+W+';line-height:1.35';
+const LB='font-size:11px;color:'+D+';letter-spacing:.22em;text-transform:uppercase;font-family:system-ui;margin-bottom:22px';
+const AT='font-size:12px;color:'+G+';margin-top:18px;letter-spacing:.1em;text-transform:uppercase;font-family:system-ui';
+const GLD='width:44px;height:2px;background:'+G+';margin:0 auto';
+
+const voices=['Business Owners','Doctors','Teachers & Educators','CEOs & COOs','Artists','NGO Leaders','IT Professionals','Healthcare Workers','Entrepreneurs','Lawyers','Surgeons','Management Consultants'];
+const vp=voices.map(v=>`<span style="padding:5px 14px;border:1px solid rgba(201,168,76,0.3);border-radius:20px;font-size:clamp(11px,1.3vw,13px);color:rgba(255,255,255,0.65);font-family:system-ui">${v}</span>`).join('');
+
+function q(text,attr){return`<div class="ql a0" style="max-width:640px"><p style="${QS};font-size:clamp(16px,2.6vw,31px)">"${text}"</p><p style="${AT}">${attr}</p></div>`;}
+function h(text){return`<p style="${HS};font-size:clamp(20px,3.4vw,44px);max-width:640px" class="a0">${text}</p>`;}
+function lbl(t){return`<p style="${LB}" class="a0">${t}</p>`;}
+function bar(){return`<div style="${GLD}" class="a0"></div>`;}
+
+const SS=[
+  {t:5000,h:h('What if the greatest barrier<br>to your leadership...<br><br>was <em style="color:'+G+';font-style:normal">you?</em>')},
+  {t:4500,h:h('What if the most powerful skill<br>in business wasn\'t strategy,<br>data, or <em>speed?</em>')},
+  {t:4200,h:`<p style="${HS};font-size:clamp(24px,4vw,52px);max-width:600px" class="a0">What if it was simply...<br><br><em style="color:${G};font-style:normal">listening?</em></p>`},
+  {t:6500,h:`${lbl('a program like no other')}<p style="${HS};font-size:clamp(22px,4vw,50px);max-width:660px" class="a1">Leadership from the<br>Emerging Future</p><div style="${GLD};margin:20px auto" class="a2"></div><p style="font-size:clamp(13px,1.7vw,17px);color:${M};font-family:system-ui" class="a3">Real voices. Real shifts. Real impact.</p>`},
+  {t:5500,h:`${lbl('the reality in most organizations')}${q('We do intelligent sounding junk.<br>We literally try to please the boss.','— CXO Workshop Participant')}`},
+  {t:5000,h:h('Most organizations are <em>not designed</em><br>to bring out the best<br>of their people.')},
+  {t:6000,h:`${lbl('three phrases. one room. every leader shaken.')}<div class="ql a1" style="max-width:640px"><p style="${QS};font-size:clamp(17px,2.8vw,34px)">"<em style="color:${G};font-style:normal">Brain is my enemy.</em><br>Speed is nonsense.<br>Leadership is not about you."</p><p style="${AT}">— Vipul, COO · Upsquare Technologies</p></div>`},
+  {t:5200,h:`${bar()}<p style="${HS};font-size:clamp(20px,3.5vw,46px);max-width:660px;margin-top:24px" class="a1">Something changes when you shift<br>from <span style="color:${D}">EGO</span>...<br>to <em style="color:${G};font-style:normal">ECO.</em></p>`},
+  {t:5500,h:q('I moved from ego to eco.<br>Two conversations moved my life<br>on a <em style="color:'+G+'">completely different basis.</em>','— Samarjit · Entrepreneur')},
+  {t:5800,h:q('The person who <em style="color:'+D+'">entered</em> the workshop<br>was a victim hiding behind excuses.<br><br>The one who <em style="color:'+G+'">left</em>...<br>is a leader with intention for life.','— Siddharth Surana')},
+  {t:5200,h:q('Old [self] died here.<br><em style="color:'+G+'">New thoughts. New visions.<br>New insights.</em> A new life is born.','— Basava · Davangere, Karnataka')},
+  {t:5000,h:`${bar()}<p style="${HS};font-size:clamp(20px,3.4vw,44px);max-width:640px;margin-top:24px" class="a1">It starts with listening.<br>Not the kind you think<br>you already do.</p>`},
+  {t:6200,h:q('I was listening all the time —<br>but my mind was <em style="color:'+D+'">suggesting answers</em><br>while others spoke.<br><br>When I started listening <em style="color:'+G+'">from the heart</em>...<br>everything shifted.','— Siddharth Surana · LFEF March 2023')},
+  {t:5800,h:q('I never created from the emerging future.<br>I never saw it that way.<br><br>And that was <em style="color:'+G+'">such a huge block</em><br>in my communication.','— Dr. Kanika Gupta · Ophthalmologist & Surgeon')},
+  {t:5200,h:`${bar()}<p style="${HS};font-size:clamp(20px,3.4vw,44px);max-width:640px;margin-top:24px" class="a1">The <em style="color:${G};font-style:normal">Empathy Walk.</em><br>A practice that changes<br>how you see people.</p>`},
+  {t:6000,h:q('I found out I\'m not a very good<br>sales person. <em style="color:'+G+'">She is.</em><br><br>I told her: you lead the sales.<br>I\'ll be your assistant.','— Pranay Kumar · Sustainability Entrepreneur')},
+  {t:5500,h:q('A single WhatsApp message.<br>₹1,20,000 raised in <em style="color:'+G+'">48 hours.</em><br><br>For a colleague\'s cancer surgery.','— Sheila · Artist & Life Coach · Chennai')},
+  {t:5200,h:`${bar()}<p style="${HS};font-size:clamp(20px,3.4vw,44px);max-width:640px;margin-top:24px" class="a1">The outcomes are real.<br>The transformations <em style="color:${G};font-style:normal">are lasting.</em></p>`},
+  {t:5500,h:q('My relationship with my team,<br>my clients, and my family...<br><br>is at a <em style="color:'+G+'">totally different level.</em>','— Sanjay Kumar · IT Entrepreneur · New Delhi')},
+  {t:6200,h:q('The dialysis unit still holds<br>the space of healing and compassion.<br><br>Patients come and get treated...<br><em style="color:'+G+'">despite civil war.</em>','— Usha Kulkarni · Healthcare Leader · Ethiopia')},
+  {t:5500,h:q('A student who was a failure<br>became a topper.<br><br>A divorce that was about to happen —<br><em style="color:'+G+'">didn\'t.</em>','— Melvin · Entrepreneur & Life Coach')},
+  {t:5200,h:`<p style="${HS};font-size:clamp(26px,5vw,64px);max-width:640px" class="a0">"I feel <em style="color:${G};font-style:normal">limitless</em><br>right now."</p><p style="${AT};margin-top:26px" class="a1">— Jayeshri Kunju · CEO · iBas Global</p>`},
+  {t:5500,h:`${lbl('across industries. across borders. across generations.')}<div style="display:flex;flex-wrap:wrap;gap:9px;justify-content:center;max-width:700px" class="a1">${vp}</div>`},
+  {t:5500,h:q('In 35 years across organisations,<br>I found that Theory U has something<br><em style="color:'+G+'">very special for all of us.</em>','— Rajeev Bhadauria · Advisor · Reliance ADAG')},
+  {t:5500,h:`<p style="${HS};font-size:clamp(18px,3vw,40px);max-width:660px;color:${M}" class="a0">What would change for you<br>if you truly listened?<br><br>If you led from the <em style="color:${G};font-style:normal">future</em>,<br>not the past?</p>`},
+  {t:99999,h:`${lbl('join thousands who have already made the shift')}<p style="${HS};font-size:clamp(22px,4vw,50px);max-width:660px" class="a1">Leadership from the<br>Emerging Future</p><div style="${GLD};margin:20px auto" class="a2"></div><p style="font-size:clamp(12px,1.7vw,16px);color:${M};font-family:system-ui;line-height:2" class="a3">CXO · LFEF · Transforming Self · Quantum Laws · Kalorex<br><em>A program by Dr. Manoj Onkar</em></p>`},
+];
+
+let cur=0,playing=true,tm=null,pi=null,t0=null;
+const va=document.getElementById('va');
+
+SS.forEach((s,i)=>{
+  const d=document.createElement('div');
+  d.className='sc'+(i===0?' on':'');
+  d.id='s'+i;
+  d.innerHTML=s.h;
+  va.appendChild(d);
+});
+
+va.addEventListener('click',tog);
+
+function show(i){
+  document.querySelectorAll('.sc').forEach(e=>e.classList.remove('on'));
+  document.getElementById('s'+i).classList.add('on');
+  document.getElementById('ct').textContent=(i+1)+'/'+SS.length;
+  if(playing)run();
+}
+
+function run(){
+  clearTimeout(tm);clearInterval(pi);
+  if(cur>=SS.length-1)return;
+  const dur=SS[cur].t;
+  t0=Date.now();
+  pi=setInterval(()=>{
+    const p=Math.min((Date.now()-t0)/dur,1);
+    document.getElementById('bar').style.width=((cur+p)/SS.length*100)+'%';
+  },60);
+  tm=setTimeout(()=>{clearInterval(pi);if(cur<SS.length-1){cur++;show(cur);}},dur);
+}
+
+function tog(){
+  playing=!playing;
+  document.getElementById('ppb').textContent=playing?'⏸':'▶';
+  if(playing)run();else{clearTimeout(tm);clearInterval(pi);}
+}
+
+function go(d){
+  clearTimeout(tm);clearInterval(pi);
+  cur=Math.max(0,Math.min(SS.length-1,cur+d));
+  show(cur);
+}
+
+document.addEventListener('keydown',e=>{
+  if(e.code==='Space'){e.preventDefault();tog();}
+  else if(e.code==='ArrowRight')go(1);
+  else if(e.code==='ArrowLeft')go(-1);
+});
+
+show(0);
+</script>
